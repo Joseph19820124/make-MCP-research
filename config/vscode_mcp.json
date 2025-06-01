@@ -1,0 +1,38 @@
+{
+  "mcp": {
+    "inputs": [
+      {
+        "type": "promptString",
+        "id": "github_token",
+        "description": "GitHub Personal Access Token",
+        "password": true
+      },
+      {
+        "type": "promptString",
+        "id": "make_token_url",
+        "description": "Make.com MCP Token URL",
+        "password": true
+      }
+    ],
+    "servers": {
+      "make": {
+        "command": "npx",
+        "args": ["-y", "@makehq/mcp-server"],
+        "env": {
+          "MAKE_MCP_TOKEN_URL": "${input:make_token_url}"
+        }
+      },
+      "github": {
+        "command": "docker",
+        "args": [
+          "run", "-i", "--rm",
+          "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+          "ghcr.io/github/github-mcp-server"
+        ],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
+        }
+      }
+    }
+  }
+}

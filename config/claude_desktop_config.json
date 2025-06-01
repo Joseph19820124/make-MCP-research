@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "make": {
+      "command": "npx",
+      "args": ["-y", "@makehq/mcp-server"],
+      "env": {
+        "MAKE_MCP_TOKEN_URL": "YOUR_MAKE_MCP_TOKEN_URL_HERE"
+      }
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_TOKEN_HERE"
+      }
+    }
+  }
+}
